@@ -42,17 +42,17 @@ class CmsswLookupCommand(sublime_plugin.TextCommand):
 
 
     def lookup(self, postfix):
-        log("lookup", self.view, postfix)
+        self.log("lookup", self.view, postfix)
         for region in self.view.sel():
             # the region must not be empty
             if region.empty():
-                log("empty")
+                self.log("empty")
                 continue
-            log("not empty")
+            self.log("not empty")
 
             # get the selected text
             text = self.view.substr(region)
-            log("text", text)
+            self.log("text", text)
 
             # convert the python-style import path to a url-style path
             path = self.convert_path(text, postfix)
