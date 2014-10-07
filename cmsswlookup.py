@@ -17,11 +17,6 @@ class CmsswLookupCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         # load settings
-        print(1, dir(sublime.load_settings("CMSSWLookup.sublime-settings")))
-        print(2, dir(self.view.settings()))
-        print(3, sublime.load_settings("CMSSWLookup.sublime-settings").has("open_cmd"))
-        print(4, self.view.settings().has("open_cmd"))
-
         if self._settings is None:
             self._settings = sublime.load_settings("CMSSWLookup.sublime-settings")
 
@@ -37,7 +32,7 @@ class CmsswLookupCommand(sublime_plugin.TextCommand):
         # lookup callback
         def do_lookup(idx):
             if ~idx:
-                self.lookup(self.view, postfixes[idx])
+                self.lookup(postfixes[idx])
 
         # > 1 extensions => show quick panel
         if len(extensions) == 1:
@@ -46,14 +41,18 @@ class CmsswLookupCommand(sublime_plugin.TextCommand):
             self.view.window().show_quick_panel(labels, do_lookup)
 
 
-    def lookup(self, view, postfix):
-        for region in view.sel():
+    def lookup(self, postfix):
+        log("lookup", self.view, postfix)
+        for region in self.view.sel():
             # the region must not be empty
             if region.empty():
+                log("empty")
                 continue
+            log("not empty")
 
             # get the selected text
-            text = view.substr(region)
+            text = self.view.substr(region)
+            log("text", text)
 
             # convert the python-style import path to a url-style path
             path = self.convert_path(text, postfix)
