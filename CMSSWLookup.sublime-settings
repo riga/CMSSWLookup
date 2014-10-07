@@ -7,6 +7,6 @@
 
 	"extensions": [
 		["Python", ".py"],
-		["Folder", "/"]
+		["Directory", "/"]
 	]
 }
