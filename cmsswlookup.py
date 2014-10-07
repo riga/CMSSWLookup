@@ -17,8 +17,10 @@ class CmsswLookupCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         # load settings
-        print(1, sublime.load_settings("CMSSWLookup.sublime-settings"))
-        print(1, self.view.settings())
+        print(1, dir(sublime.load_settings("CMSSWLookup.sublime-settings")))
+        print(2, dir(self.view.settings()))
+        print(3, sublime.load_settings("CMSSWLookup.sublime-settings").has("open_cmd"))
+        print(4, self.view.settings().has("open_cmd"))
 
         if self._settings is None:
             self._settings = sublime.load_settings("CMSSWLookup.sublime-settings")
