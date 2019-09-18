@@ -1,12 +1,7 @@
 {
-	"branch": "CMSSW_5_3_19",
+    "branch": "master",
 
-	"url_format": "https://github.com/cms-sw/cmssw/blob/%(branch)s/%(path)s%(postfix)s",
+    "url_format": "https://github.com/cms-sw/cmssw/blob/{branch}/{path}",
 
-	"open_cmd": "open",
-
-	"extensions": [
-		["Python", ".py"],
-		["Directory", "/"]
-	]
+    "open_cmd": "open"
 }
